@@ -9,5 +9,5 @@ public interface IDishPersistencePort {
 
     void updateDish(Long id, Double price, String description);
 
-
+    void toggleDishAvailability(Long id, boolean isAvailable);
 }

@@ -32,4 +32,11 @@ public class Dish {
     public void updateDescription(String description) { 
         this.dishInfo.setDescription(description); 
     }
+
+    @Override
+    public String toString() {
+        return "Dish [id=" + id + ", dishInfo=" + dishInfo + ", restaurantAssociation=" + restaurantAssociation
+                + ", active=" + active + "]";
+    }
+    
 }

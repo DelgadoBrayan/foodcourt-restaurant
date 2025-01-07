@@ -5,6 +5,7 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import com.menu.dish.application.dto.DishDto;
+import com.menu.dish.application.dto.UpdateDishActive;
 import com.menu.dish.application.dto.UpdateDishDto;
 import com.menu.dish.domain.model.dish.Dish;
 import com.menu.dish.domain.model.dish.DishInfo;
@@ -45,6 +46,15 @@ public interface DishMapper {
         dish.updatePrice(updateDishDTO.getPrice()); 
         dish.updateDescription(updateDishDTO.getDescription()); 
         return dish; 
+    }
+
+        default Dish updateDishAvailability(Dish dish,UpdateDishActive updateDishActive){
+        if (dish == null) { 
+            return null; 
+        } 
+
+        dish.setActive(updateDishActive.getIsAvailable());
+        return dish;
     }
 
 }

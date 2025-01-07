@@ -10,4 +10,11 @@ public class RestaurantAssociation {
 
     public Long getRestaurantId() { return restaurantId; }
     public void setRestaurantId(Long restaurantId) { this.restaurantId = restaurantId; }
+
+    @Override
+    public String toString() {
+        return "RestaurantAssociation [restaurantId=" + restaurantId + "]";
+    }
+
+    
 }

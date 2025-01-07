@@ -31,4 +31,12 @@ public class DishJpaAdapter implements IDishPersistencePort {
         
     }
 
+    @Override
+    public void toggleDishAvailability(Long id, boolean isAvailable) {
+        dishRepository.findById(id).ifPresent(dishEntity -> {
+            dishEntity.setActive(isAvailable);
+            dishRepository.save(dishEntity);
+        });
+    }
+
 }

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.menu.dish.application.dto.DishDto;
+import com.menu.dish.application.dto.UpdateDishActive;
 import com.menu.dish.application.dto.UpdateDishDto;
 import com.menu.dish.application.handler.DishHandler;
 
@@ -32,5 +33,10 @@ public class DishController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @PutMapping("/changeStatus/{id}")
+    public ResponseEntity<Void> updateDishAvailability(@PathVariable Long id, @RequestBody UpdateDishActive updateDishActive) {
+        dishHandler.toggleDishAvailability(id, updateDishActive);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 
 }
