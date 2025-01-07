@@ -6,7 +6,7 @@ import com.menu.dish.application.dto.DishDto;
 import com.menu.dish.application.dto.UpdateDishDto;
 import com.menu.dish.application.mapper.DishMapper;
 import com.menu.dish.domain.api.IDishServicePort;
-import com.menu.dish.domain.model.Dish;
+import com.menu.dish.domain.model.dish.Dish;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

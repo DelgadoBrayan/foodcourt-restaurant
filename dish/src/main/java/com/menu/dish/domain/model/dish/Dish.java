@@ -1,4 +1,4 @@
-package com.menu.dish.domain.model;
+package com.menu.dish.domain.model.dish;
 
 
 public class Dish {
