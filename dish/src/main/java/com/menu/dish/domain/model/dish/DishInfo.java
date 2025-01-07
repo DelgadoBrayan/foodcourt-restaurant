@@ -29,4 +29,12 @@ public class DishInfo {
 
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
+
+    @Override
+    public String toString() {
+        return "DishInfo [name=" + name + ", price=" + price + ", description=" + description + ", urlImage=" + urlImage
+                + ", category=" + category + "]";
+    }
+
+    
 }

@@ -39,13 +39,23 @@ public class DishUseCase implements IDishServicePort {
     public void updateDish(Long id, Double price, String description) {
         Dish dish = dishPersistencePort.findDishById(id);
         if (dish == null) {
-            throw new IllegalArgumentException("Plato no encontrado");
+            throw new InvalidDishException("Plato no encontrado");
         }
         dish.getDishInfo().setPrice(price);
         dish.getDishInfo().setDescription(description);
         dishPersistencePort.saveDish(dish);
     }
 
+    @Override
+    public void toggleDishAvailability(Long id, boolean isAvailable) {
+        Dish dish = dishPersistencePort.findDishById(id);
 
+        if (dish == null) {
+            throw new InvalidDishException("Plato no encontrado");
+        }
+
+        dish.setActive(isAvailable);
+        dishPersistencePort.saveDish(dish);
+    }
 
 }

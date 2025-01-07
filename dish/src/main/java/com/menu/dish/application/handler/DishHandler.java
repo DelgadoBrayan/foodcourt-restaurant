@@ -3,6 +3,7 @@ package com.menu.dish.application.handler;
 import org.springframework.stereotype.Service;
 
 import com.menu.dish.application.dto.DishDto;
+import com.menu.dish.application.dto.UpdateDishActive;
 import com.menu.dish.application.dto.UpdateDishDto;
 import com.menu.dish.application.mapper.DishMapper;
 import com.menu.dish.domain.api.IDishServicePort;
@@ -29,5 +30,9 @@ public class DishHandler {
         dishServicePort.updateDish(id, updatedDish.getDishInfo().getPrice(), updatedDish.getDishInfo().getDescription());
     }
 
-
+    public void toggleDishAvailability(Long id, UpdateDishActive updateDishActive) {
+        Dish dish = dishServicePort.findDishById(id);
+        Dish updateDish = DishMapper.INSTANCE.updateDishAvailability(dish, updateDishActive);
+        dishServicePort.toggleDishAvailability(id, updateDish.isActive());
+    }
 }
