@@ -1,42 +1,51 @@
 package com.menu.dish.domain.usecase;
 
+import org.springframework.stereotype.Service;
+
+import com.menu.dish.domain.api.IDishServicePort;
 import com.menu.dish.domain.model.Dish;
 import com.menu.dish.domain.spi.IDishPersistencePort;
+import com.menu.dish.infrastructure.exception.InvalidDishException;
 
-public class DishUseCase {
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class DishUseCase implements IDishServicePort {
+
     private final IDishPersistencePort dishPersistencePort;
 
-    public DishUseCase(IDishPersistencePort dishPersistencePort) {
-        this.dishPersistencePort = dishPersistencePort;
-    }
-
-    public void createDish(Dish dish) {
+    @Override
+    public void saveDish(Dish dish) {
         if (dish.getDishInfo().getPrice() <= 0) {
-            throw new IllegalArgumentException("Price must be greater than 0");
+           throw new InvalidDishException("El precio debe ser mayor a 0");
         }
 
         if (dish.getRestaurantAssociation().getRestaurantId() == null) {
-            throw new IllegalArgumentException("Restaurant ID cannot be null");
+            throw new InvalidDishException("El ID del restaurante no puede ser nulo");
         }
 
         dish.setActive(true);
 
-        dishPersistencePort.saveDish(dish);
+         dishPersistencePort.saveDish(dish);
     }
 
+    @Override
     public Dish findDishById(Long id) {
         return dishPersistencePort.findDishById(id);
     }
 
-    public void updateDish(Long id, int price, String description) {
+    @Override
+    public void updateDish(Long id, Double price, String description) {
         Dish dish = dishPersistencePort.findDishById(id);
         if (dish == null) {
-            throw new IllegalArgumentException("Dish not found");
+            throw new IllegalArgumentException("Plato no encontrado");
         }
-        dish.updatePrice(price);
-        dish.updateDescription(description);
+        dish.getDishInfo().setPrice(price);
+        dish.getDishInfo().setDescription(description);
         dishPersistencePort.saveDish(dish);
     }
 
-}
 
+
+}

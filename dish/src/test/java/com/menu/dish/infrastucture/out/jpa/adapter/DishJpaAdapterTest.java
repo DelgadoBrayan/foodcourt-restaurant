@@ -16,16 +16,18 @@ import org.mockito.MockitoAnnotations;
 import com.menu.dish.domain.model.Dish;
 import com.menu.dish.domain.model.DishInfo;
 import com.menu.dish.domain.model.RestaurantAssociation;
-import com.menu.dish.infrastucture.out.jpa.entity.DishEntity;
-import com.menu.dish.infrastucture.out.jpa.mapper.DishEntityMapper;
-import com.menu.dish.infrastucture.out.jpa.repository.DishRepository;
+import com.menu.dish.infrastructure.out.jpa.adapter.DishJpaAdapter;
+import com.menu.dish.infrastructure.out.jpa.entity.DishEntity;
+import com.menu.dish.infrastructure.out.jpa.mapper.DishEntityMapper;
+import com.menu.dish.infrastructure.out.jpa.repository.DishRepository;
 
  class DishJpaAdapterTest {
 
     @Mock
     private DishRepository dishRepository;
 
-    private DishEntityMapper dishEntityMapper = DishEntityMapper.INSTANCE;
+    @Mock
+    private DishEntityMapper dishEntityMapper;
 
     @InjectMocks
     private DishJpaAdapter dishJpaAdapter;
@@ -39,7 +41,7 @@ import com.menu.dish.infrastucture.out.jpa.repository.DishRepository;
         dishEntity = new DishEntity();
         dishEntity.setId(1L);
         dishEntity.setName("Pasta");
-        dishEntity.setPrice(10000);
+        dishEntity.setPrice(10.000);
         dishEntity.setDescription("Delicious pasta");
         dishEntity.setUrlImage("http://example.com/image.png");
         dishEntity.setCategory("Main Course");
@@ -47,7 +49,7 @@ import com.menu.dish.infrastucture.out.jpa.repository.DishRepository;
         dishEntity.setActive(true);
 
         dish = new Dish(1L, new DishInfo("Pasta",
-                                            10000, 
+                                            10.000, 
                                             "Delicious pasta", 
                                             "http://example.com/image.png", 
                                             "Main Course"), 

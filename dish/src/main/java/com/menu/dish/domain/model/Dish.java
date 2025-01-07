@@ -5,9 +5,9 @@ public class Dish {
     private Long id;
     private DishInfo dishInfo;
     private RestaurantAssociation restaurantAssociation;
-    private boolean active;
+    private Boolean active;
 
-    public Dish(Long id, DishInfo dishInfo, RestaurantAssociation restaurantAssociation, boolean active) {
+    public Dish(Long id, DishInfo dishInfo, RestaurantAssociation restaurantAssociation, Boolean active) {
         this.id = id;
         this.dishInfo = dishInfo;
         this.restaurantAssociation = restaurantAssociation;
@@ -24,9 +24,9 @@ public class Dish {
     public void setRestaurantAssociation(RestaurantAssociation restaurantAssociation) { this.restaurantAssociation = restaurantAssociation; }
 
     public boolean isActive() { return active; }
-    public void setActive(boolean active) { this.active = active; }
+    public void setActive(Boolean active) { this.active = active; }
 
-    public void updatePrice(int price) { 
+    public void updatePrice(Double price) { 
         this.dishInfo.setPrice(price); 
     } 
     public void updateDescription(String description) { 

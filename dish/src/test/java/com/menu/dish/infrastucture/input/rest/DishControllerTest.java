@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.menu.dish.application.dto.DishDto;
 import com.menu.dish.application.handler.DishHandler;
+import com.menu.dish.infrastructure.input.rest.DishController;
 
  class DishControllerTest {
 
@@ -37,7 +38,7 @@ import com.menu.dish.application.handler.DishHandler;
         
         dishDto = new DishDto();
         dishDto.setName("Pasta");
-        dishDto.setPrice(10000);
+        dishDto.setPrice(10.000);
         dishDto.setDescription("Delicious pasta");
         dishDto.setUrlImage("http://example.com/image.png");
         dishDto.setCategory("Main Course");

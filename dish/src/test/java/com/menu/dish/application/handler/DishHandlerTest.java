@@ -29,7 +29,7 @@ import com.menu.dish.domain.usecase.DishUseCase;
         MockitoAnnotations.openMocks(this);
         dishDto = new DishDto();
         dishDto.setName("Pasta");
-        dishDto.setPrice(10000);
+        dishDto.setPrice(10.000);
         dishDto.setDescription("Delicious pasta");
         dishDto.setUrlImage("http://example.com/image.png");
         dishDto.setCategory("Main Course");
@@ -41,6 +41,6 @@ import com.menu.dish.domain.usecase.DishUseCase;
         dishHandler.createDish(dishDto);
 
         Dish dish = DishMapper.INSTANCE.toDish(dishDto);
-        verify(createDishUseCase, times(1)).createDish(dish);
+        verify(createDishUseCase, times(1)).saveDish(dish);
     }
 }

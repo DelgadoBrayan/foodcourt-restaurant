@@ -1,6 +1,7 @@
 package com.menu.dish.application.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import com.menu.dish.application.dto.DishDto;
@@ -9,7 +10,9 @@ import com.menu.dish.domain.model.Dish;
 import com.menu.dish.domain.model.DishInfo;
 import com.menu.dish.domain.model.RestaurantAssociation;
 
-@Mapper
+@Mapper(componentModel = "spring",
+        unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface DishMapper {
     DishMapper INSTANCE = Mappers.getMapper(DishMapper.class);
 
@@ -31,6 +34,7 @@ public interface DishMapper {
         dishDto.setUrlImage(dish.getDishInfo().getUrlImage());
         dishDto.setCategory(dish.getDishInfo().getCategory());
         dishDto.setRestaurantId(dish.getRestaurantAssociation().getRestaurantId());
+        dishDto.setActive(dish.isActive()); 
         return dishDto;
     }
 
@@ -42,4 +46,5 @@ public interface DishMapper {
         dish.updateDescription(updateDishDTO.getDescription()); 
         return dish; 
     }
+
 }

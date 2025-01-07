@@ -34,17 +34,17 @@ import com.menu.dish.domain.spi.IDishPersistencePort;
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        dishInfo = new DishInfo("Pasta", 10000, "Delicious pasta", "http://example.com/image.png", "Main Course");
+        dishInfo = new DishInfo("Pasta", 10.000, "Delicious pasta", "http://example.com/image.png", "Main Course");
         restaurantAssociation = new RestaurantAssociation(1L);
         dish = new Dish(1L, dishInfo, restaurantAssociation, true);
     }
 
     @Test
      void testExecute_InvalidPrice() {
-        dish.getDishInfo().setPrice(0);
+        dish.getDishInfo().setPrice(0.0);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            createDishUseCase.createDish(dish);
+            createDishUseCase.saveDish(dish);
         });
 
         assertEquals("Price must be greater than 0", exception.getMessage());
@@ -56,7 +56,7 @@ import com.menu.dish.domain.spi.IDishPersistencePort;
         dish.getRestaurantAssociation().setRestaurantId(null);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            createDishUseCase.createDish(dish);
+            createDishUseCase.saveDish(dish);
         });
 
         assertEquals("Restaurant ID cannot be null", exception.getMessage());
@@ -65,7 +65,7 @@ import com.menu.dish.domain.spi.IDishPersistencePort;
 
     @Test
      void testExecute_Success() {
-        createDishUseCase.createDish(dish);
+        createDishUseCase.saveDish(dish);
 
         assertTrue(dish.isActive());
         verify(dishPersistencePort, times(1)).saveDish(dish);

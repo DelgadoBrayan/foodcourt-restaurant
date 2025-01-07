@@ -1,13 +1,19 @@
-package com.menu.dish.infrastucture.out.jpa.entity;
+package com.menu.dish.infrastructure.out.jpa.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "dish")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class DishEntity {
@@ -15,7 +21,7 @@ public class DishEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; 
     private String name; 
-    private int price; 
+    private Double price; 
     private String description; 
     private String urlImage; 
     private String category; 
