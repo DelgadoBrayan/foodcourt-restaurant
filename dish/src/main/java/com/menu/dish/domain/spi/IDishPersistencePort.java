@@ -1,6 +1,6 @@
 package com.menu.dish.domain.spi;
 
-import com.menu.dish.domain.model.Dish;
+import com.menu.dish.domain.model.dish.Dish;
 
 public interface IDishPersistencePort {
     void saveDish(Dish dish);

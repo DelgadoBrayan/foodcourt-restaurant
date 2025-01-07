@@ -11,7 +11,7 @@ import org.mockito.MockitoAnnotations;
 
 import com.menu.dish.application.dto.DishDto;
 import com.menu.dish.application.mapper.DishMapper;
-import com.menu.dish.domain.model.Dish;
+import com.menu.dish.domain.model.dish.Dish;
 import com.menu.dish.domain.usecase.DishUseCase;
 
  class DishHandlerTest {

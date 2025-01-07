@@ -1,6 +1,6 @@
 package com.menu.dish.domain.api;
 
-import com.menu.dish.domain.model.Dish;
+import com.menu.dish.domain.model.dish.Dish;
 
 public interface IDishServicePort {
     void saveDish(Dish dish);

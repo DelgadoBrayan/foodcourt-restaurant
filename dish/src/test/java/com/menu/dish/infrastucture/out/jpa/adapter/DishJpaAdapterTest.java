@@ -13,9 +13,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.menu.dish.domain.model.Dish;
-import com.menu.dish.domain.model.DishInfo;
-import com.menu.dish.domain.model.RestaurantAssociation;
+import com.menu.dish.domain.model.dish.Dish;
+import com.menu.dish.domain.model.dish.DishInfo;
+import com.menu.dish.domain.model.dish.RestaurantAssociation;
 import com.menu.dish.infrastructure.out.jpa.adapter.DishJpaAdapter;
 import com.menu.dish.infrastructure.out.jpa.entity.DishEntity;
 import com.menu.dish.infrastructure.out.jpa.mapper.DishEntityMapper;

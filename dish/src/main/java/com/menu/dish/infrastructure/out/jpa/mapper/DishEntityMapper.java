@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-import com.menu.dish.domain.model.Dish;
+import com.menu.dish.domain.model.dish.Dish;
 import com.menu.dish.infrastructure.out.jpa.entity.DishEntity;
 
 @Mapper(componentModel = "spring")

@@ -3,7 +3,7 @@ package com.menu.dish.domain.usecase;
 import org.springframework.stereotype.Service;
 
 import com.menu.dish.domain.api.IDishServicePort;
-import com.menu.dish.domain.model.Dish;
+import com.menu.dish.domain.model.dish.Dish;
 import com.menu.dish.domain.spi.IDishPersistencePort;
 import com.menu.dish.infrastructure.exception.InvalidDishException;
 

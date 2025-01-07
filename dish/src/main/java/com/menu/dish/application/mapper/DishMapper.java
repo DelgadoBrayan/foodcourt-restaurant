@@ -6,9 +6,9 @@ import org.mapstruct.factory.Mappers;
 
 import com.menu.dish.application.dto.DishDto;
 import com.menu.dish.application.dto.UpdateDishDto;
-import com.menu.dish.domain.model.Dish;
-import com.menu.dish.domain.model.DishInfo;
-import com.menu.dish.domain.model.RestaurantAssociation;
+import com.menu.dish.domain.model.dish.Dish;
+import com.menu.dish.domain.model.dish.DishInfo;
+import com.menu.dish.domain.model.dish.RestaurantAssociation;
 
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,

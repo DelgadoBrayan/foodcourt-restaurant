@@ -1,6 +1,6 @@
 package com.menu.dish.infrastructure.out.jpa.adapter;
 
-import com.menu.dish.domain.model.Dish;
+import com.menu.dish.domain.model.dish.Dish;
 import com.menu.dish.domain.spi.IDishPersistencePort;
 import com.menu.dish.infrastructure.out.jpa.mapper.DishEntityMapper;
 import com.menu.dish.infrastructure.out.jpa.repository.DishRepository;
