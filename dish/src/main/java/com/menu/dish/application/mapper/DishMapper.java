@@ -1,6 +1,10 @@
 package com.menu.dish.application.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
@@ -8,53 +12,33 @@ import com.menu.dish.application.dto.DishDto;
 import com.menu.dish.application.dto.UpdateDishActive;
 import com.menu.dish.application.dto.UpdateDishDto;
 import com.menu.dish.domain.model.dish.Dish;
-import com.menu.dish.domain.model.dish.DishInfo;
-import com.menu.dish.domain.model.dish.RestaurantAssociation;
 
-@Mapper(componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        unmappedSourcePolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface DishMapper {
     DishMapper INSTANCE = Mappers.getMapper(DishMapper.class);
 
-    default Dish toDish(DishDto dishDto) {
-        if (dishDto == null) {return null;}
+    @Mapping(source = "name", target = "dishInfo.name")
+    @Mapping(source = "price", target = "dishInfo.price")
+    @Mapping(source = "description", target = "dishInfo.description")
+    @Mapping(source = "urlImage", target = "dishInfo.urlImage")
+    @Mapping(source = "category", target = "dishInfo.category")
+    @Mapping(source = "restaurantId", target = "restaurantAssociation.restaurantId")
+    Dish toDish(DishDto dishDto);
 
-        DishInfo dishInfo = new DishInfo(dishDto.getName(), dishDto.getPrice(), dishDto.getDescription(), dishDto.getUrlImage(), dishDto.getCategory());
-        RestaurantAssociation restaurantAssociation = new RestaurantAssociation(dishDto.getRestaurantId());
-        return new Dish(null, dishInfo, restaurantAssociation, true);
-    }
+    @Mapping(source = "dishInfo.name", target = "name")
+    @Mapping(source = "dishInfo.price", target = "price")
+    @Mapping(source = "dishInfo.description", target = "description")
+    @Mapping(source = "dishInfo.urlImage", target = "urlImage")
+    @Mapping(source = "dishInfo.category", target = "category")
+    @Mapping(source = "restaurantAssociation.restaurantId", target = "restaurantId")
+    DishDto toDishDTO(Dish dish);
 
-    default DishDto toDishDTO(Dish dish) {
-        if (dish == null) {return null;}
+    @Mapping(target = "dishInfo.price", source = "price")
+    @Mapping(target = "dishInfo.description", source = "description")
+    Dish updateDishFromDTO(@MappingTarget Dish dish, UpdateDishDto updateDishDTO);
 
-        DishDto dishDto = new DishDto();
-        dishDto.setName(dish.getDishInfo().getName());
-        dishDto.setPrice(dish.getDishInfo().getPrice());
-        dishDto.setDescription(dish.getDishInfo().getDescription());
-        dishDto.setUrlImage(dish.getDishInfo().getUrlImage());
-        dishDto.setCategory(dish.getDishInfo().getCategory());
-        dishDto.setRestaurantId(dish.getRestaurantAssociation().getRestaurantId());
-        dishDto.setActive(dish.isActive()); 
-        return dishDto;
-    }
+    @Mapping(target = "active", source = "isAvailable")
+    Dish updateDishAvailability(@MappingTarget Dish dish, UpdateDishActive updateDishActive);
 
-    default Dish updateDishFromDTO(Dish dish, UpdateDishDto updateDishDTO) { 
-        if (dish == null || updateDishDTO == null) { 
-            return null; 
-        } 
-        dish.updatePrice(updateDishDTO.getPrice()); 
-        dish.updateDescription(updateDishDTO.getDescription()); 
-        return dish; 
-    }
-
-        default Dish updateDishAvailability(Dish dish,UpdateDishActive updateDishActive){
-        if (dish == null) { 
-            return null; 
-        } 
-
-        dish.setActive(updateDishActive.getIsAvailable());
-        return dish;
-    }
-
+    List<DishDto> toDishDTOList(List<Dish> dishes);
 }

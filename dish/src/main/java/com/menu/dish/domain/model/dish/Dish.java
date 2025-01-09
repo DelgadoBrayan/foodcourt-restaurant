@@ -7,6 +7,9 @@ public class Dish {
     private RestaurantAssociation restaurantAssociation;
     private Boolean active;
 
+    
+    public Dish() {}
+
     public Dish(Long id, DishInfo dishInfo, RestaurantAssociation restaurantAssociation, Boolean active) {
         this.id = id;
         this.dishInfo = dishInfo;

@@ -7,6 +7,9 @@ public class DishInfo {
     private String urlImage;
     private String category;
 
+    
+    public DishInfo() {}
+
     public DishInfo(String name, Double price, String description, String urlImage, String category) {
         this.name = name;
         this.price = price;

@@ -4,6 +4,10 @@ package com.menu.dish.domain.model.dish;
 public class RestaurantAssociation {
     private Long restaurantId;
 
+    
+
+    public RestaurantAssociation() {}
+
     public RestaurantAssociation(Long restaurantId) {
         this.restaurantId = restaurantId;
     }

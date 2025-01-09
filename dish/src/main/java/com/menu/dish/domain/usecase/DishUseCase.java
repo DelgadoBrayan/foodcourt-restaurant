@@ -1,5 +1,7 @@
 package com.menu.dish.domain.usecase;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.menu.dish.domain.api.IDishServicePort;
@@ -56,6 +58,12 @@ public class DishUseCase implements IDishServicePort {
 
         dish.setActive(isAvailable);
         dishPersistencePort.saveDish(dish);
+    }
+
+    @Override
+    public List<Dish> listDishesByRestaurant(Long restaurantId, int page, int size, String category) {
+        
+        return dishPersistencePort.listDishesByRestaurant(restaurantId, page, size, category);
     }
 
 }
