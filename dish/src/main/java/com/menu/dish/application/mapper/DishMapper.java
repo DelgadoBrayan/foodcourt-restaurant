@@ -5,7 +5,6 @@ import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import com.menu.dish.application.dto.DishDto;
@@ -13,7 +12,7 @@ import com.menu.dish.application.dto.UpdateDishActive;
 import com.menu.dish.application.dto.UpdateDishDto;
 import com.menu.dish.domain.model.dish.Dish;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, unmappedSourcePolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring")
 public interface DishMapper {
     DishMapper INSTANCE = Mappers.getMapper(DishMapper.class);
 
@@ -41,4 +40,5 @@ public interface DishMapper {
     Dish updateDishAvailability(@MappingTarget Dish dish, UpdateDishActive updateDishActive);
 
     List<DishDto> toDishDTOList(List<Dish> dishes);
+
 }

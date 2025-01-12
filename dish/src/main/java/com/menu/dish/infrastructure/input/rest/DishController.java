@@ -59,4 +59,10 @@ public class DishController {
         return ResponseEntity.status(HttpStatus.OK).body(dishes);
     }
 
+    @GetMapping("/byIds")
+    public ResponseEntity<List<DishDto>> getDishesByIds(@RequestParam List<Long> ids) {
+        List<DishDto> dishes = dishHandler.getDishesByIds(ids);
+        return ResponseEntity.status(HttpStatus.OK).body(dishes);
+    }
+
 }

@@ -42,4 +42,9 @@ public class DishHandler {
         List<Dish> dishes = dishServicePort.listDishesByRestaurant(restaurantId, page, size, category);
         return DishMapper.INSTANCE.toDishDTOList(dishes);
     }
+
+    public List<DishDto> getDishesByIds(List<Long> ids) {
+        List<Dish> dishes = dishServicePort.findDishesByIds(ids);
+        return DishMapper.INSTANCE.toDishDTOList(dishes);
+    }
 }

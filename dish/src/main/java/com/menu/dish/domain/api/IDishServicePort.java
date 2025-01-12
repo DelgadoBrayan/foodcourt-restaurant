@@ -14,4 +14,6 @@ public interface IDishServicePort {
     void toggleDishAvailability(Long id, boolean isAvailable);
 
     List<Dish> listDishesByRestaurant(Long restaurantId, int page, int size, String category);
+
+    List<Dish> findDishesByIds(List<Long> ids);
 }

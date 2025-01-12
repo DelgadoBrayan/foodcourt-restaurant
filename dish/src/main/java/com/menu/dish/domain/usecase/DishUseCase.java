@@ -1,6 +1,7 @@
 package com.menu.dish.domain.usecase;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
@@ -20,16 +21,13 @@ public class DishUseCase implements IDishServicePort {
     @Override
     public void saveDish(Dish dish) {
         if (dish.getDishInfo().getPrice() <= 0) {
-           throw new InvalidDishException("El precio debe ser mayor a 0");
+            throw new InvalidDishException("El precio debe ser mayor a 0");
         }
-
         if (dish.getRestaurantAssociation().getRestaurantId() == null) {
             throw new InvalidDishException("El ID del restaurante no puede ser nulo");
         }
-
         dish.setActive(true);
-
-         dishPersistencePort.saveDish(dish);
+        dishPersistencePort.saveDish(dish);
     }
 
     @Override
@@ -51,19 +49,23 @@ public class DishUseCase implements IDishServicePort {
     @Override
     public void toggleDishAvailability(Long id, boolean isAvailable) {
         Dish dish = dishPersistencePort.findDishById(id);
-
         if (dish == null) {
             throw new InvalidDishException("Plato no encontrado");
         }
-
         dish.setActive(isAvailable);
         dishPersistencePort.saveDish(dish);
     }
 
     @Override
     public List<Dish> listDishesByRestaurant(Long restaurantId, int page, int size, String category) {
-        
         return dishPersistencePort.listDishesByRestaurant(restaurantId, page, size, category);
     }
 
+@Override
+public List<Dish> findDishesByIds(List<Long> ids) {
+    return ids.stream()
+            .map(dishPersistencePort::findDishById)
+            .filter(Objects::nonNull)
+            .toList();
+}
 }
